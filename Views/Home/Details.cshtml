@@ -1,0 +1,16 @@
+﻿@model Tarea_Autonoma.Models.Pokemon
+
+<div class="container text-center">
+    <h1>@Model.Name.ToUpper()</h1>
+    <img src="@Model.Sprites.Front_Default" alt="@Model.Name" class="img-fluid" />
+    <p><strong>Altura:</strong> @Model.Height</p>
+    <p><strong>Peso:</strong> @Model.Weight</p>
+    <p>
+        <strong>Tipo(s):</strong>
+        @foreach (var type in Model.Types)
+        {
+            <span class="badge bg-primary">@type.Type.Name</span>
+        }
+    </p>
+    <a class="btn btn-secondary" asp-action="Index">Volver a la lista</a>
+</div>

@@ -1,0 +1,38 @@
+﻿@model Tarea_Autonoma.Services.PokemonPage
+<div class="container text-center">
+    <h1>Lista de Pokémon</h1>
+    <div class="d-flex flex-wrap gap-5 justify-content-center">
+        @foreach (var pokemon in Model.Pokemons)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src="@pokemon.Sprites.Front_Default"
+                     alt="@pokemon.Name"
+                     class="card-img-top p-3"
+                     style="height: 300px; width:fit-content;max-width: 100%; margin-inline:auto" />
+                <div class="card-body">
+                    <h5 class="card-title">@pokemon.Name.ToUpper()</h5>
+                    <p class="card-text">Altura: @pokemon.Height</p>
+                    <p class="card-text">Peso: @pokemon.Weight</p>
+                    <a class="btn btn-primary"
+                       asp-controller="Home"
+                       asp-action="Details"
+                       asp-route-name="@pokemon.Name">
+                        Ver Detalles
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+        
+    <div class="mt-4">
+        @if (Model.PreviousPage.HasValue)
+        {
+            <a class="btn btn-outline-primary" asp-action="Index" asp-route-page="@Model.PreviousPage.Value">Anterior</a>
+        }
+        <span class="mx-3">Página @Model.CurrentPage</span>
+        @if (Model.NextPage.HasValue)
+        {
+            <a class="btn btn-outline-primary" asp-action="Index" asp-route-page="@Model.NextPage.Value">Siguiente</a>
+        }
+    </div>
+</div>
